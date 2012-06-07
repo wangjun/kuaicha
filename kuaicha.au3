@@ -42,7 +42,11 @@ While 1
 	Switch $nMsg
 		Case $GUI_EVENT_CLOSE
 			ConsoleWrite($pid)
-			ProcessClose($pid)
+			Local $list = ProcessList("kuaicha.exe")
+			#MsgBox(262144,'Debug line ~' & @ScriptLineNumber,'Selection:' & @lf & '$list[0][0]' & @lf & @lf & 'Return:' & @lf & $list[0][0]) ;### Debug MSGBOX
+			If $list[0][0]==1 Then
+				ProcessClose("kuaicha_svr.exe")
+			EndIf
 			Exit
 		Case $Button1
 			_IEAction($oIE, "forward")
